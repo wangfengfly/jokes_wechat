@@ -10,10 +10,22 @@ Page({
     requestResult: ''
   },
 
+  doGetJokes: function() {
+    //获取笑话列表
+    wx.cloud.callFunction({
+      name: 'juhejokes',
+      data: {},
+      success: res => {
+        console.log('[云函数] [juhejokes] 调用成功:', res)
+      },
+      fail: err => {
+        console.error('[云函数] [juhejokes] 调用失败', err)
+      }
+    })
+  },
+
   onLoad: function() {
-    
     if (!wx.cloud) {
-      console.log(wx.cloud)
       wx.redirectTo({
         url: '../chooseLib/chooseLib',
       })
@@ -35,18 +47,6 @@ Page({
           })
         }
       }
-    })
-    
-    //获取笑话列表
-    wx.cloud.callFunction({
-      name: 'juhejokes',
-      data: {
-
-      },
-      success: function(res) {
-        console.log(res)
-      },
-      fail: console.error
     })
     
   },
@@ -84,7 +84,6 @@ Page({
 
   // 上传图片
   doUpload: function () {
-    console.log('start')
     // 选择图片
     wx.chooseImage({
       count: 1,

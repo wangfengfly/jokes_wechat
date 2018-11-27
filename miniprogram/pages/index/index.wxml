@@ -40,4 +40,8 @@
     </navigator>
   </view>
 
+  <view>
+      <button class="userinfo-nickname" bindtap="doGetJokes">点击获取笑话</button>
+    </view>
+
 </view>

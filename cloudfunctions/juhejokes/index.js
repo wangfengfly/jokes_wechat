@@ -1,22 +1,15 @@
 // 云函数入口文件
 const cloud = require('wx-server-sdk')
-
 cloud.init()
 
+var request = require('sync-request')
+
 // 云函数入口函数
-exports.main = async (event, context) => {
+exports.main = (event, context) => {
   const wxContext = cloud.getWXContext()
 
-  var Fly = require("flyio/dist/npm/wx")
-  var fly = new Fly
-  var jokes = {}
-  fly.get('m.haha.sogou.com/getMore/index?key=text&page=1')
-  .then(function (response) {
-     jokes = response
-  })
-  .catch(function (error) {
-    console.log(error)
-  })
+  var res = request('GET', 'http://m.haha.sogou.com/getMore/index?key=text&page=1')
+  var jokes = JSON.parse(res.getBody())
 
   return {
     event,
@@ -25,4 +18,6 @@ exports.main = async (event, context) => {
     unionid: wxContext.UNIONID,
     jokes: jokes
   }
+
+
 }
