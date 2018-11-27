@@ -10,3 +10,11 @@
 
 - [云开发文档](https://developers.weixin.qq.com/miniprogram/dev/wxcloud/basis/getting-started.html)
 
+## cloudfunctions/juhejokes先运行如下命令安装依赖：  
+- npm install --save sync-request  
+- npm install --save wx-server-sdk
+
+## cloudfunctions/login运行如下命令安装依赖：  
+- npm install --save wx-server-sdk  
+
+
